@@ -184,8 +184,6 @@
     
 })();
 
-$("#submit-button").on("click", function(){
-    sessionStorage.setItem("name", $("name-input").val());
-    window.location.href = "chorelists.html";
-
-});
+function storename(){
+    localStorage.setItem("username", $("#name-input").val());
+}

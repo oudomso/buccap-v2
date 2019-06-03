@@ -1,4 +1,10 @@
 $( document ).ready(function() {
+
+  var username = localStorage.getItem("username");
+
+  var namediv = document.createTextNode(username + "'s To Do list");
+  $("#header-title").append(namediv);
+
   var firebaseConfig = {
     apiKey: "AIzaSyAAYOYa6uiZjZr47mRQ0JmhCJML4geiTkk",
     authDomain: "class-project-328c0.firebaseapp.com",
@@ -15,7 +21,7 @@ $( document ).ready(function() {
   var activities = {
     active :{
      phrase: ["Go play Soccer", "Go Jogging", "Pratice Yoga", "Learn how to ride a Skateboard", "Get up and Dance", "Hit the Gym"],
-     things: ["Soccer", "Jogging", "Yoga", "Skateboard", "Dance", "Best Gym workout"],
+     things: ["Soccer", "Jogging", "Yoga", "Skateboard tutorial", "Dance move for beginner", "Best Gym workout"],
     },
     food :{
     phrase: ["Eat fancy pizza", "Eat a popular hamburger", "Drink some good beer", "Try noodles", "Good steak"],
@@ -130,10 +136,10 @@ $( document ).ready(function() {
 
 
     displayvideo(getactive.things[activenum],getactive,activenum);
-    displayvideo(getfood.things[foodnum],getfood, foodnum);
-    displayvideo(getart.things[artnum], getart, artnum);
-    displayvideo(getgames.things[gamesnum], getgames, gamesnum);
-    displayvideo(getvideos.things[videosnum], getvideos, videosnum);
+    // displayvideo(getfood.things[foodnum],getfood, foodnum);
+    // displayvideo(getart.things[artnum], getart, artnum);
+    // displayvideo(getgames.things[gamesnum], getgames, gamesnum);
+    // displayvideo(getvideos.things[videosnum], getvideos, videosnum);
 
 
   }
