@@ -25,12 +25,12 @@ $( document ).ready(function() {
      things: ["Soccer", "Jogging", "Yoga", "Skateboard tutorial", "Dancing", "Best Gym workout"],
     },
     food :{
-    phrase: ["Eat fancy pizza", "Eat a popular hamburger", "Drink some good beer", "Try noodles", "Good steak"],
+    phrase: ["Eat fancy pizza", "Eat a popular hamburger", "Drink some good beer", "Eat some noodles", "Eat some good steak"],
     things: ["Pizza", "Hamburger", "Distillery", "Noodles", "Steak"],
     },
     art :{
     phrase: ["Play a song on the guitar", "Try painting", "Do Arts and Crafts", "Write poetry", "Do ceramic"],
-    things: ["beginner guitar tutorial", "oil painting tutorial", "Arts and Craft tutorial", "poetry", "ceramic tutorial"],
+    things: ["beginner guitar tutorial", "oil painting tutorial", "Arts and Craft with paper", "poetry", "ceramic tutorial"],
     },
     games :{
     phrase: ["Play someone in chess", "Play pictionary", "Play someone in checkers", "Play scrabble", "Play yatze", "Learn Mahjong"],
@@ -42,6 +42,10 @@ $( document ).ready(function() {
     },
     
    };
+
+   var done;
+
+
    function displayvideo (title, topic, num){
 
     var queryURL = " https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+title+"&key=AIzaSyBmhN3p-dqfmj80HmNsELm4gE2ftTTs0r8";
@@ -118,6 +122,7 @@ $( document ).ready(function() {
     close[i].onclick = function() {
       var div = this.parentElement;
       div.style.display = "none";
+      
     }
   }
   
@@ -139,11 +144,9 @@ $( document ).ready(function() {
     var getvideos = activities.videos;
 
     displaygif(getactive,activenum);
-    // displayvideo(getactive.things[activenum],getactive,activenum);
     displayfood(getfood, foodnum);
     displayvideo(getart.things[artnum], getart, artnum);
     displayvideo(getgames.things[gamesnum], getgames, gamesnum);
-    // displayvideo(getvideos.things[videosnum], getvideos, videosnum);
 
 
   }
@@ -175,9 +178,7 @@ function displayfood(food, num){
       }
     }
   
-  // var map = $("<iframe height='200' width='300'></iframe>");
-  // map.attr("src", "https://www.google.com/maps/search/" + food.things[num]);
-  // li.append(map[0]);
+
   var btn = $("<button>");
   var maplink = "https://www.google.com/maps/search/" + food.things[num];
   var clickme = $("<a target='_blank' href =" + maplink + ">click me</a>");
@@ -208,7 +209,7 @@ function displaygif(gif, num){
 .then(function(response) {
   var li = document.createElement("li");
     var inputValue = gif.phrase[num];
-
+    
     var t = document.createTextNode(inputValue);
     t.ClassName= "center";
     li.appendChild(t);
@@ -241,10 +242,11 @@ $("#active").on("click", function(){
 
 });
   $(document.body).on('click', '.close', function(){
-      console.log(this.parentElement.nodeValue);
-      database.ref().push({
-        username: name,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP,
-    });
+    var text = this.parentElement.text;
+    console.log(text);
+    //   database.ref().push({
+    //     act: active,
+    //     dateAdded: firebase.database.ServerValue.TIMESTAMP,
+    // });
   });
 });
