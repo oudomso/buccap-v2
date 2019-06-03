@@ -22,42 +22,40 @@
 
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
-            <div class="main-title"> <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-9" style="text-align: center">
-                      <H1 style="margin: 10px" id="logo" class="fontstyle">Welcome to </H1>
-                      <H1 style="margin: 10px" id="logo">Rand Act</H1>
+            <div class="main-title"> 
+
+                <div class="dropdown" style="margin-left:120%">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      Players
+                    </button>
+                    <div id= "drop-down-stuff" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" > Peter</a>
+                      <a class="dropdown-item" > Mohamed</a>
+                      <a class="dropdown-item" > Oudom</a>
                     </div>
-                    <div class="col-md-1">
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          Players
-                        </button>
-                        <div id= "drop-down-stuff" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" > Peter</a>
-                          <a class="dropdown-item" > Mohamed</a>
-                          <a class="dropdown-item" > Oudom</a>
-                        </div>
-                      </div>
+                  </div>
+                    
+                    <div style="text-align: center display:flex">
+                      <h1 style="margin: 10px" class="fontstyle">Welcome to </h1>
+                      <h1 style="margin: 10px" >Rand Act</h1>
                     </div>
-                    <br>
-                
-                    <div class ="center" style="margin-top: 10px">
+                    
+                      
+                    <div class ="center" style="margin-top: 50px; font-size:20px">
                 
                         An App that generate random activities for you to do when you are bored. 
                         <br>
                         <br>
                         <form action="chorelists.html" method="get" >
-                            <input id="name-input" style="width:250px; margin: 10px; margin-top:30px" type="text" name="fname" placeholder="Enter your name and press Start...">
-                          <input class = "btn btn primary" type="submit" value="Click" onclick="storename()">
+                            <input id="name-input" style="width:300px; margin: 10px; margin-top:30px" type="text" name="fname" placeholder="Enter your name here">
+                          <input class = "btn btn-primary" type="submit" value="Submit" onclick="storename()">
                         </form>
                       
                      
                     </div>
                 
                 
-                  </div>
                 </div>
             
         </div>

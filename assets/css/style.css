@@ -174,3 +174,9 @@ body {
   display: block;
   text-shadow: none;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
+#header-title{
+	font-family: 'Noto Serif', serif;
+	font-size: 40px;
+}

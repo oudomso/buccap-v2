@@ -50,3 +50,6 @@
 .row{
     z-index: 2;
 }
+#welcome{
+	display: flex;
+}
