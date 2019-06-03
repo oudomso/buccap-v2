@@ -15,29 +15,29 @@ $( document ).ready(function() {
   var activities = {
     active :{
      phrase: ["Go play Soccer", "Go Jogging", "Pratice Yoga", "Learn how to ride a Skateboard", "Get up and Dance", "Hit the Gym"],
-     things: ["Soccer", "Jogging", "Yoga", "Skateboard", "Dance", "Gym"],
+     things: ["Soccer", "Jogging", "Yoga", "Skateboard", "Dance", "Best Gym workout"],
     },
     food :{
     phrase: ["Eat fancy pizza", "Eat a popular hamburger", "Drink some good beer", "Try noodles", "Good steak"],
     things: ["Pizza", "Hamburger", "Beer", "Noodles", "Steak"],
     },
     art :{
-    phrase: ["Play a song on the guitar", "Try painting", "Do Craft", "Write poetry", "Do ceramic"],
-    things: ["guitar", "paint", "craft", "poetry", "ceramic"],
+    phrase: ["Play a song on the guitar", "Try painting", "Do Arts and Crafts", "Write poetry", "Do ceramic"],
+    things: ["beginner guitar tutorial", "how to paint", "Arts and Craft tutorial", "poetry", "ceramic tutorial"],
     },
     games :{
     phrase: ["Play someone in chess", "Play pictionary", "Play someone in checkers", "Play scrabble", "Play yatze", "Learn Mahjong"],
     things: ["Chess", "Pictionary", "Checkers", "Scrabble", "Yatze", "Mahjong"],
     },
     videos :{
-    phrase: ["Watch some Pokemon", "Watch a Disney movie you've never seen before", "Watch a Stephen King Movie", "Watch a Nicholas Sparks Movie"],
-    things: ["Pokemon", "Disney", "Stephen King", "Nicholas Sparks"],
+    phrase: ["Watch a Pokemon movie ", "Watch a Disney movie you've never seen before", "Watch a Stephen King Movie", "Watch a Nicholas Sparks Movie"],
+    things: ["Pokemon detective pikachu", "Disney Aladin trailer", "Stephen King Movie", "Nicholas Sparks Movies"],
     },
     
    };
-   function displayvideo (title){
+   function displayvideo (title, topic, num){
 
-    var queryURL = " https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+title+"&key=AIzaSyCtAW16mLF5rypcDKIwFq4qFV8uJoG8HmI";
+    var queryURL = " https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+title+"&key=AIzaSyAdBSj6L7KqgDhLPsdnku_JZSl6Bcx5Og8";
   
   
     $.ajax({
@@ -46,12 +46,11 @@ $( document ).ready(function() {
     })
     .then(function(response) { 
 
-      // return "https://www.youtube.com/v/" + response.items[0].id.videoId;
-      var link= "https://www.youtube.com/v/" + response.items[0].id.videoId;
-
-    });
-    }
-  function newElement(topic, num) {
+      var link = "https://www.youtube.com/v/" + response.items[0].id.videoId;
+      // var link= "https://www.youtube.com/v/" + response.items[0].id.videoId;
+      return link;
+      
+    }).then(function(link){
     var li = document.createElement("li");
     var inputValue = topic.phrase[num];
     var t = document.createTextNode(inputValue );
@@ -60,7 +59,7 @@ $( document ).ready(function() {
     //document.getElementById("myInput").value = "";
   
     var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
+    var txt = document.createTextNode("Done");
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
@@ -71,23 +70,24 @@ $( document ).ready(function() {
         div.style.display = "none";
       }
     }
-//     <object width="420" height="315"
-// data="https://www.youtube.com/v/5Qpz70iz-Xc">
-// </object>
+    var linebreak = $("<br>");
+    linebreak.addClass("center");
 
-    var link = displayvideo(topic.things[num]);
+    
     var video = $("<object>");
     video.attr("data", link);
     video.attr("height", "315 px");
     video.attr("width", '420 px');
+
+    video.addClass("center");
     console.log(link);
-    li.append("<br>");
+
+    li.append(linebreak[0]);
+
     li.append(video[0]);    
+    });
   }
    
-
-
-  
   var list = document.querySelector('ul');
   list.addEventListener('click', function(ev) {
     if (ev.target.tagName === 'LI') {
@@ -129,34 +129,35 @@ $( document ).ready(function() {
     var getvideos = activities.videos;
 
 
-    newElement(getactive,activenum);
-    newElement(getfood, foodnum);
-    newElement(getart, artnum);
-    newElement(getgames, gamesnum);
-    newElement(getvideos, videosnum);
+    displayvideo(getactive.things[activenum],getactive,activenum);
+    displayvideo(getfood.things[foodnum],getfood, foodnum);
+    displayvideo(getart.things[artnum], getart, artnum);
+    displayvideo(getgames.things[gamesnum], getgames, gamesnum);
+    displayvideo(getvideos.things[videosnum], getvideos, videosnum);
+
 
   }
   
   randomize();
 
   
-// function displaymovie(title){
+function displaymovie(title){
 
-// console.log('here')
-// var movie = $(this).attr("data-name");
-// var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+  console.log('here')
+  var movie = $(this).attr("data-name");
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
-// // Creates AJAX call for the specific movie button being clicked
-// $.ajax({
-//   url: queryURL,
-//   method: "GET"
-// })
-// .then(function(response) {
-//   console.log(queryURL);
-// console.log(response);
-// $(".movies-view").text(JSON.stringify(response));
-// }
-
+  // Creates AJAX call for the specific movie button being clicked
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+  .then(function(response) {
+    console.log(queryURL);
+  console.log(response);
+  $(".movies-view").text(JSON.stringify(response));
+    });
+}
 
 
 });

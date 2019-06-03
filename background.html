@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script scr="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/easing/EasePack.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="assets/css/background.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+          <link href="https://fonts.googleapis.com/css?family=Ranga&display=swap" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+    </head>
+
+
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <div class="main-title"> <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-9" style="text-align: center">
+                      <H1 style="margin: 10px" id="logo" class="fontstyle">Welcome to </H1>
+                      <H1 style="margin: 10px" id="logo">Rand Act</H1>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          Players
+                        </button>
+                        <div id= "drop-down-stuff" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" > Peter</a>
+                          <a class="dropdown-item" > Mohamed</a>
+                          <a class="dropdown-item" > Oudom</a>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                
+                    <div class ="center" style="margin-top: 10px">
+                
+                        An App that generate random activities for you to do when you are bored. 
+                        <br>
+                        <br>
+                      <input id="name-input" style="width:250px; margin: 10px; margin-top:30px" type="text" name="fname" placeholder="Enter your name and press Start...">
+                      <button class="btn btn-primary" id="submit-button">Start</button>
+                    </div>
+                
+                
+                  </div>
+                </div>
+            
+        </div>
+
+    <script src="assets/js/background.js"></script>
+
+</html>
