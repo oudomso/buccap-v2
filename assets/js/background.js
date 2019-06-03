@@ -184,6 +184,41 @@
     
 })();
 
-function storename(){
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyAAYOYa6uiZjZr47mRQ0JmhCJML4geiTkk",
+    authDomain: "class-project-328c0.firebaseapp.com",
+    databaseURL: "https://class-project-328c0.firebaseio.com",
+    projectId: "class-project-328c0",
+    storageBucket: "class-project-328c0.appspot.com",
+    messagingSenderId: "201869728141",
+    appId: "1:201869728141:web:ecb3fff10ff3ef2d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
+
+var name;
+
+  function storename(){
     localStorage.setItem("username", $("#name-input").val());
-}
+    name = $("#name-input").val();
+ }
+
+database.ref().push({
+    username: name,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP,
+});
+
+database.ref().on("child_added", function(snapshot) {
+
+    var snapval = snapshot.val().username;
+    console.log(snapval);
+
+    $("#dropdownlistofthing").append(
+        "<a class= 'dropdown-item'  >" + snapval + "</a>"
+    )
+    }, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+});

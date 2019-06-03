@@ -6,18 +6,18 @@ $( document ).ready(function() {
   var namediv = document.createTextNode(username + "'s To Do list");
   $("#header-title").append(namediv);
 
-  // var firebaseConfig = {
-  //   apiKey: "AIzaSyAAYOYa6uiZjZr47mRQ0JmhCJML4geiTkk",
-  //   authDomain: "class-project-328c0.firebaseapp.com",
-  //   databaseURL: "https://class-project-328c0.firebaseio.com",
-  //   projectId: "class-project-328c0",
-  //   storageBucket: "class-project-328c0.appspot.com",
-  //   messagingSenderId: "201869728141",
-  //   appId: "1:201869728141:web:ecb3fff10ff3ef2d"
-  // };
-  // // Initialize Firebase
-  // firebase.initializeApp(firebaseConfig);
-  // var database = firebase.database();
+  var firebaseConfig = {
+    apiKey: "AIzaSyAAYOYa6uiZjZr47mRQ0JmhCJML4geiTkk",
+    authDomain: "class-project-328c0.firebaseapp.com",
+    databaseURL: "https://class-project-328c0.firebaseio.com",
+    projectId: "class-project-328c0",
+    storageBucket: "class-project-328c0.appspot.com",
+    messagingSenderId: "201869728141",
+    appId: "1:201869728141:web:ecb3fff10ff3ef2d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
 
   var activities = {
     active :{
@@ -26,15 +26,15 @@ $( document ).ready(function() {
     },
     food :{
     phrase: ["Eat fancy pizza", "Eat a popular hamburger", "Drink some good beer", "Try noodles", "Good steak"],
-    things: ["Pizza", "Hamburger", "Beer", "Noodles", "Steak"],
+    things: ["Pizza", "Hamburger", "Distillery", "Noodles", "Steak"],
     },
     art :{
     phrase: ["Play a song on the guitar", "Try painting", "Do Arts and Crafts", "Write poetry", "Do ceramic"],
-    things: ["beginner guitar tutorial", "how to do oil painting", "Arts and Craft tutorial", "poetry", "ceramic tutorial"],
+    things: ["beginner guitar tutorial", "oil painting tutorial", "Arts and Craft tutorial", "poetry", "ceramic tutorial"],
     },
     games :{
     phrase: ["Play someone in chess", "Play pictionary", "Play someone in checkers", "Play scrabble", "Play yatze", "Learn Mahjong"],
-    things: ["Chess", "Pictionary", "Checkers", "Scrabble", "Yatze", "Mahjong"],
+    things: ["Chess", "Pictionary", "Checkers", "Scrabble", "how to play yatze", "how to play Mahjong"],
     },
     videos :{
     phrase: ["Watch a Pokemon movie ", "Watch a Disney movie you've never seen before", "Watch a Stephen King Movie", "Watch a Nicholas Sparks Movie"],
@@ -44,7 +44,7 @@ $( document ).ready(function() {
    };
    function displayvideo (title, topic, num){
 
-    var queryURL = " https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+title+"&key=AIzaSyAdBSj6L7KqgDhLPsdnku_JZSl6Bcx5Og8";
+    var queryURL = " https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+title+"&key=AIzaSyBmhN3p-dqfmj80HmNsELm4gE2ftTTs0r8";
   
   
     $.ajax({
@@ -70,6 +70,7 @@ $( document ).ready(function() {
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
+    
   
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
@@ -110,6 +111,8 @@ $( document ).ready(function() {
     span.appendChild(txt);
     myNodelist[i].appendChild(span);
   }
+
+  //CLose the activity when done and save it to firebase
   var close = document.getElementsByClassName("close");
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
@@ -117,7 +120,7 @@ $( document ).ready(function() {
       div.style.display = "none";
     }
   }
-
+  
   function randomize(){
     var activenum = Math.floor(Math.random()*activities.active.phrase.length);
     var getactive = activities.active;
@@ -137,7 +140,7 @@ $( document ).ready(function() {
 
     displaygif(getactive,activenum);
     // displayvideo(getactive.things[activenum],getactive,activenum);
-    // displayvideo(getfood.things[foodnum],getfood, foodnum);
+    displayfood(getfood, foodnum);
     displayvideo(getart.things[artnum], getart, artnum);
     displayvideo(getgames.things[gamesnum], getgames, gamesnum);
     // displayvideo(getvideos.things[videosnum], getvideos, videosnum);
@@ -148,47 +151,44 @@ $( document ).ready(function() {
   randomize();
 
   
-// function displaymovie(title, num){
+function displayfood(food, num){
+  var li = document.createElement("li");
+    var inputValue = food.phrase[num];
 
-//   console.log('here')
-//   var movie = title.things[num];
-//   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-
-//   // Creates AJAX call for the specific movie button being clicked
-//   $.ajax({
-//     url: queryURL,
-//     method: "GET"
-//   })
-//   .then(function(response) {
-//     var li = document.createElement("li");
-//     var inputValue = title.phrase[num];
-
-//     var t = document.createTextNode(inputValue );
-//     t.ClassName= "center";
-//     li.appendChild(t);
-//     document.getElementById("myUL").appendChild(li);      
-//     //document.getElementById("myInput").value = "";
+    var t = document.createTextNode(inputValue );
+    t.ClassName= "center";
+    li.appendChild(t);
+    document.getElementById("myUL").appendChild(li);      
+    //document.getElementById("myInput").value = "";
   
-//     var span = document.createElement("SPAN");
-//     var txt = document.createTextNode("Done");
-//     span.className = "close";
-//     span.appendChild(txt);
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("Done");
+    span.className = "close";
+    span.appendChild(txt);
     
-//     li.appendChild(span);
+    li.appendChild(span);
   
-//     for (i = 0; i < close.length; i++) {
-//       close[i].onclick = function() {
-//         var div = this.parentElement;
-//         div.style.display = "none";
-//       }
-//     }
-
-//     var movdiv = $("<")
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
   
-//   });
+  // var map = $("<iframe height='200' width='300'></iframe>");
+  // map.attr("src", "https://www.google.com/maps/search/" + food.things[num]);
+  // li.append(map[0]);
+  var btn = $("<button>");
+  var maplink = "https://www.google.com/maps/search/" + food.things[num];
+  var clickme = $("<a target='_blank' href =" + maplink + ">click me</a>");
+  li.append($("<br>")[0]);
+  btn.append(clickme);
+
+  li.append(btn[0]);
+    
+}
 
 
-//   }
 function displaygif(gif, num){
   // Grabbing and storing the data-animal property value from the button
   //var gif = $(this).attr("data-name");
@@ -209,7 +209,7 @@ function displaygif(gif, num){
   var li = document.createElement("li");
     var inputValue = gif.phrase[num];
 
-    var t = document.createTextNode(inputValue );
+    var t = document.createTextNode(inputValue);
     t.ClassName= "center";
     li.appendChild(t);
     document.getElementById("myUL").appendChild(li);      
@@ -236,4 +236,15 @@ function displaygif(gif, num){
     });
 
   }
+$("#active").on("click", function(){
+  window.open("completed.html");
+
+});
+  $(document.body).on('click', '.close', function(){
+      console.log(this.parentElement.nodeValue);
+      database.ref().push({
+        username: name,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP,
+    });
+  });
 });
