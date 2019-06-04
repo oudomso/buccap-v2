@@ -204,12 +204,13 @@ var name;
   function storename(){
     localStorage.setItem("username", $("#name-input").val());
     name = $("#name-input").val();
- }
-
-database.ref().push({
-    username: name,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP,
-});
+}
+if(name!=""){
+    database.ref().push({
+        username: name,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP,
+    });
+}
 
 database.ref().on("child_added", function(snapshot) {
 
