@@ -147,6 +147,7 @@ $( document ).ready(function() {
     displayfood(getfood, foodnum);
     displayvideo(getart.things[artnum], getart, artnum);
     displayvideo(getgames.things[gamesnum], getgames, gamesnum);
+    displayvideo(getvideos.things[videosnum], getvideos, videosnum);
 
 
   }
